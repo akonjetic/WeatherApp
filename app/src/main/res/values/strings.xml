@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">WeatherApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="searchTab">Search</string>
+    <string name="favoritesTab">Favorites</string>
+    <string name="settingsTab">Settings</string>
+    <string name="searchCities">Search Cities</string>
+    <string name="today">Today</string>
+    <string name="next7days">Next 7 Days</string>
+    <string name="maxTemp">Max Temp:</string>
+    <string name="minTemp">Min Temp:</string>
+    <string name="wind">Wind:</string>
+    <string name="humidity">Humidity:</string>
+    <string name="pressure">Pressure:</string>
+    <string name="visibility">Visibility:</string>
+    <string name="accuracy">Accuracy:</string>
 </resources>

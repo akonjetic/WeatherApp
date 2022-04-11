@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".model.ChosenCity">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/purple_200">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingTollbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:contentScrim="@color/purple_200"
+            app:expandedTitleMarginStart="120dp"
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+            android:padding="20dp">
+
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="120dp"
+                    android:id="@+id/toolbar_title"
+                    android:textSize="20sp"
+                    android:layout_marginTop="12dp"
+                    />
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/timeAndTimeZone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="8sp"
+                android:padding="16dp"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/minTemp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="8sp"
+                android:padding="16dp"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/maxTemp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="8sp"
+                android:padding="16dp"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/wind"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="8sp"
+                android:padding="16dp"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/humidity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="8sp"
+                android:padding="16dp"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/pressure"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="8sp"
+                android:padding="16dp"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/visibility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="8sp"
+                android:padding="16dp"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/accuracy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="8sp"
+                android:padding="16dp"
+                android:textSize="20sp" />
+
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/today_weather_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/today"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/today_hor_scr_lay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <hr.tvz.weatherapp.view.TodayWeatherView
+                    android:id="@+id/time1"
+                    android:layout_width="wrap_content"
+                    app:timeText="@string/today"
+                    app:tempText="@string/today"
+                    android:layout_marginRight="12dp"
+                    android:layout_height="wrap_content"/>
+                <hr.tvz.weatherapp.view.TodayWeatherView
+                    android:id="@+id/time2"
+                    android:layout_width="wrap_content"
+                    app:timeText="@string/today"
+                    app:tempText="@string/today"
+                    android:layout_marginRight="12dp"
+                    android:layout_height="wrap_content"/>
+                <hr.tvz.weatherapp.view.TodayWeatherView
+                    android:id="@+id/time3"
+                    android:layout_width="wrap_content"
+                    app:timeText="@string/today"
+                    app:tempText="@string/today"
+                    android:layout_marginRight="12dp"
+                    android:layout_height="wrap_content"/>
+                <hr.tvz.weatherapp.view.TodayWeatherView
+                    android:id="@+id/time4"
+                    android:layout_width="wrap_content"
+                    app:timeText="@string/today"
+                    app:tempText="@string/today"
+                    android:layout_marginRight="12dp"
+                    android:layout_height="wrap_content"/>
+                <hr.tvz.weatherapp.view.TodayWeatherView
+                    android:id="@+id/time5"
+                    android:layout_width="wrap_content"
+                    app:timeText="@string/today"
+                    app:tempText="@string/today"
+                    android:layout_marginRight="12dp"
+                    android:layout_height="wrap_content"/>
+                <hr.tvz.weatherapp.view.TodayWeatherView
+                    android:id="@+id/time6"
+                    android:layout_width="wrap_content"
+                    app:timeText="@string/today"
+                    app:tempText="@string/today"
+                    android:layout_marginRight="12dp"
+                    android:layout_height="wrap_content"/>
+                <hr.tvz.weatherapp.view.TodayWeatherView
+                    android:id="@+id/time7"
+                    android:layout_width="wrap_content"
+                    app:timeText="@string/today"
+                    app:tempText="@string/today"
+                    android:layout_marginRight="12dp"
+                    android:layout_height="wrap_content"/>
+                <hr.tvz.weatherapp.view.TodayWeatherView
+                    android:id="@+id/time8"
+                    android:layout_width="wrap_content"
+                    app:timeText="@string/today"
+                    app:tempText="@string/today"
+                    android:layout_marginRight="12dp"
+                    android:layout_height="wrap_content"/>
+                <hr.tvz.weatherapp.view.TodayWeatherView
+                    android:id="@+id/time9"
+                    android:layout_width="wrap_content"
+                    app:timeText="@string/today"
+                    app:tempText="@string/today"
+                    android:layout_marginRight="12dp"
+                    android:layout_height="wrap_content"/>
+                <hr.tvz.weatherapp.view.TodayWeatherView
+                    android:id="@+id/time10"
+                    android:layout_width="wrap_content"
+                    app:timeText="@string/today"
+                    app:tempText="@string/today"
+                    android:layout_marginRight="12dp"
+                    android:layout_height="wrap_content"/>
+                <hr.tvz.weatherapp.view.TodayWeatherView
+                    android:id="@+id/time11"
+                    android:layout_width="wrap_content"
+                    app:timeText="@string/today"
+                    app:tempText="@string/today"
+                    android:layout_marginRight="12dp"
+                    android:layout_height="wrap_content"/>
+                <hr.tvz.weatherapp.view.TodayWeatherView
+                    android:id="@+id/time12"
+                    android:layout_width="wrap_content"
+                    app:timeText="@string/today"
+                    app:tempText="@string/today"
+                    android:layout_marginRight="12dp"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            </HorizontalScrollView>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/next7_weather_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/next7days"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/hor_scr_lay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                <hr.tvz.weatherapp.view.TodayWeatherView
+                    android:id="@+id/day1"
+                    android:layout_width="wrap_content"
+                    app:timeText="@string/today"
+                    app:tempText="@string/today"
+                    android:layout_marginRight="12dp"
+                    android:layout_height="wrap_content"/>
+                <hr.tvz.weatherapp.view.TodayWeatherView
+                    android:id="@+id/day2"
+                    android:layout_width="wrap_content"
+                    app:timeText="@string/today"
+                    app:tempText="@string/today"
+                    android:layout_marginRight="12dp"
+                    android:layout_height="wrap_content"/>
+                <hr.tvz.weatherapp.view.TodayWeatherView
+                    android:id="@+id/day3"
+                    android:layout_width="wrap_content"
+                    app:timeText="@string/today"
+                    app:tempText="@string/today"
+                    android:layout_marginRight="12dp"
+                    android:layout_height="wrap_content"/>
+                <hr.tvz.weatherapp.view.TodayWeatherView
+                    android:id="@+id/day4"
+                    android:layout_width="wrap_content"
+                    app:timeText="@string/today"
+                    app:tempText="@string/today"
+                    android:layout_marginRight="12dp"
+                    android:layout_height="wrap_content"/>
+                <hr.tvz.weatherapp.view.TodayWeatherView
+                    android:id="@+id/day5"
+                    android:layout_width="wrap_content"
+                    app:timeText="@string/today"
+                    app:tempText="@string/today"
+                    android:layout_marginRight="12dp"
+                    android:layout_height="wrap_content"/>
+                    <hr.tvz.weatherapp.view.TodayWeatherView
+                        android:id="@+id/day6"
+                        android:layout_width="wrap_content"
+                        app:timeText="@string/today"
+                        app:tempText="@string/today"
+                        android:layout_marginRight="12dp"
+                        android:layout_height="wrap_content"/>
+                    <hr.tvz.weatherapp.view.TodayWeatherView
+                        android:id="@+id/day7"
+                        android:layout_width="wrap_content"
+                        app:timeText="@string/today"
+                        app:tempText="@string/today"
+                        android:layout_marginRight="12dp"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+
+            </HorizontalScrollView>
+
+
+
+
+
+
+        </LinearLayout>
+        </LinearLayout>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
