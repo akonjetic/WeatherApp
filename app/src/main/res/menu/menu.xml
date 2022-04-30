@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/ic_search"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="@string/searchTab"/>
+
+    <item
+        android:id="@+id/ic_favorites"
+        android:icon="@drawable/ic_baseline_star_border_24"
+        android:title="@string/favoritesTab"/>
+
+    <item
+        android:id="@+id/ic_settings"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:title="@string/settingsTab"/>
+</menu>
