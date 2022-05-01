@@ -7,6 +7,7 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import hr.tvz.weatherapp.helpers.CityInfoHelper
 import hr.tvz.weatherapp.network.Network
 import hr.tvz.weatherapp.network.model.CityData
 import hr.tvz.weatherapp.network.model.LocationResponse
@@ -47,6 +48,11 @@ class MainActivityViewModel : ViewModel() {
            })
         }
     }
+
+  /*  val cityInfoData : ArrayList<CityInfoHelper> =
+        with(CityInfoHelper("", "", "")) {getCityInfoList(cityData.value!!.consolidated_weather)}
+*/
+
 
     protected suspend fun <T : Any> safeCall(call: suspend () -> T): T?{
         try {

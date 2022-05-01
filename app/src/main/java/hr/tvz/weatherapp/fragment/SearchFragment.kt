@@ -28,6 +28,8 @@ class SearchFragment : Fragment() {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
+        //binding.searchEditText.background = resources.getDrawable(R.color.black)
+
         viewModel.listOfLocations.observe(viewLifecycleOwner){
             val adapter = SearchCitiesAdapter(requireContext(), it)
             binding.recyclerView.adapter = adapter

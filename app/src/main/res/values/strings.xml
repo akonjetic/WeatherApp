@@ -15,4 +15,20 @@
     <string name="pressure">Pressure:</string>
     <string name="visibility">Visibility:</string>
     <string name="accuracy">Accuracy:</string>
+    <string-array name="city_info_array">
+        <item>MIN / MAX</item>
+        <item>WIND</item>
+        <item>HUMIDITY</item>
+        <item>PRESSURE</item>
+        <item>VISIBILITY</item>
+        <item>ACCURACY</item>
+    </string-array>
+    <string-array name="info_images_names">
+        <item>thermostat</item>
+        <item>wind</item>
+        <item>humidity</item>
+        <item>pressure</item>
+        <item>visibility</item>
+        <item>accuracy</item>
+    </string-array>
 </resources>
