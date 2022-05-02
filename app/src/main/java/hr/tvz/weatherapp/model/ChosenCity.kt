@@ -41,7 +41,6 @@ class ChosenCity : AppCompatActivity(){
         val chosenCity = intent.getIntExtra(EXTRA_CITY, 0)
         var isItFavorite = intent.getBooleanExtra(FAVORITE, false)
         var unfavorited : Boolean = false
-        var buttonClickedFav: Boolean = false
         val date = getCurrentDateTime()
         val dateInStringS = date.toString("yyyy/MM/dd")
 
@@ -98,7 +97,6 @@ class ChosenCity : AppCompatActivity(){
                     )
                     binding.favoriteIcon.setImageResource(resourceID)
                     unfavorited = false
-                    buttonClickedFav = true
 
                 } else{
                     viewModel.removeFavoriteCity(applicationContext, viewModel.cityData.value!!)
@@ -110,7 +108,6 @@ class ChosenCity : AppCompatActivity(){
                     binding.favoriteIcon.setImageResource(resourceID)
 
                     unfavorited = true
-                    buttonClickedFav = true
                 }
 
 
@@ -122,7 +119,6 @@ class ChosenCity : AppCompatActivity(){
                 it.favorite = true
             }
 
-            buttonClickedFav = false
         }
 
 

@@ -1,5 +1,6 @@
 package hr.tvz.weatherapp.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -98,27 +99,24 @@ class FavoriteCityAdapter(
         return favoritesList.size
     }
 
-    fun swapItems(fromPosition: Int, toPosition: Int){
-        if(fromPosition < toPosition){
-            for(i in fromPosition..toPosition - 1){
-                favoritesList.set(i, favoritesList.set(i+1, favoritesList.get(i)))
-            }
-        } else{
-            for(i in fromPosition..toPosition + 1){
-                favoritesList.set(i, favoritesList.set(i-1, favoritesList.get(i)))
-            }
-        }
-
-        notifyItemMoved(fromPosition, toPosition)
-
-        favoritesList[fromPosition].crrnPos = toPosition
-        runBlocking {  cityDatabase.getCityDao().insertCity(favoritesList[fromPosition])}
-    }
 
     fun removeItem(position: Int){
+        /*favoritesList[position].favorite = false
+        runBlocking { cityDatabase.getCityDao().insertCity(favoritesList[position]) }
+
+        favoritesList.removeAt(position)
+
+        notifyItemRemoved(position)
+        notifyDataSetChanged()*/
+
         favoritesList[position].favorite = false
         runBlocking { cityDatabase.getCityDao().insertCity(favoritesList[position]) }
+
+        favoritesList.remove(favoritesList[position])
+
         notifyItemRemoved(position)
-        notifyDataSetChanged()
+        //notifyDataSetChanged()
+
     }
+
 }
