@@ -40,6 +40,11 @@ class SearchFragment : Fragment() {
 
             binding.searchEditText.doAfterTextChanged {
                 viewModel.getLocationList(binding.searchEditText.text.toString())
+                binding.recyclerView.visibility = View.VISIBLE
+
+                if(binding.searchEditText.text.toString() == "") {
+                    binding.recyclerView.visibility = View.GONE
+                }
             }
 
         //na promjenu liste u bazi podataka, on u novi adapter preda listu iz baze
@@ -74,6 +79,10 @@ class SearchFragment : Fragment() {
 
         binding.searchEditText.doAfterTextChanged {
             viewModel.getLocationList(binding.searchEditText.text.toString())
+            binding.recyclerView.visibility = View.VISIBLE
+
+            if(binding.searchEditText.text.toString() == ""){
+               binding.recyclerView.visibility = View.GONE           }
         }
 
 

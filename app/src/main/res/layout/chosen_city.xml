@@ -11,15 +11,18 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/purple_200">
+        android:background="@color/surface_surface_1">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsingTollbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:contentScrim="@color/purple_200"
+            app:contentScrim="@color/surface_surface_1"
             app:expandedTitleMarginStart="120dp"
+            app:collapsedTitleGravity="center"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+            app:collapsedTitleTextAppearance="@style/HeadlineMediumNLv1Left"
+            app:expandedTitleTextAppearance="@style/HeadlineLargeNLv1Left"
             android:padding="20dp">
 
 
@@ -27,12 +30,20 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin">
+                app:layout_collapseMode="pin"
+                >
 
                 <RelativeLayout
                     android:id="@+id/relativeLayout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="12dp"
+                        android:src="@drawable/ic_icons_android_ic_arrow_back" />
 
                     <TextView
                         android:id="@+id/toolbar_title"
@@ -40,16 +51,17 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_marginStart="120dp"
-
-                        android:textSize="20sp" />
+                        android:layout_marginTop="20dp"
+                        app:layout_collapseMode="pin"
+                        style="@style/HeadlineLargeNLv1Left"/>
 
                     <ImageView
                         android:id="@+id/favoriteIcon"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:layout_marginTop="12dp"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginRight="12dp"/>
+                        android:layout_marginTop="12dp"
+                        android:layout_marginRight="12dp" />
                 </RelativeLayout>
 
 
@@ -67,11 +79,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="400dp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/cityInfoRecycler"/>
 
 

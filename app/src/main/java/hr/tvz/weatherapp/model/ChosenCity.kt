@@ -78,13 +78,15 @@ class ChosenCity : AppCompatActivity(){
 
 
         viewModel.cityData.observe(this){
-            val adapter = TodaysWeatherAdapter(applicationContext, viewModel.cityDataSpecificDate.value, it.consolidated_weather, false)
+            val adapter = TodaysWeatherAdapter(applicationContext, viewModel.cityDataSpecificDate.value!!, it.consolidated_weather, false)
             binding.next5DaysWeatherRecycler.adapter = adapter
 
-            val adapter2 = ChosenCityInfoAdapter(applicationContext, viewModel.cityDataSpecificDate.value)
+            val adapter2 = ChosenCityInfoAdapter(applicationContext, viewModel.cityDataSpecificDate.value!!)
             binding.cityInfoRecycler.adapter = adapter2
 
             binding.toolbarTitle.text = viewModel.cityData.value?.title
+
+
 
             binding.favoriteIcon.setOnClickListener {
 

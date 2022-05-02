@@ -11,7 +11,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
         app:layout_constraintBottom_toTopOf="@id/recycler_view"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -20,18 +20,37 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-        <EditText
-            android:id="@+id/searchEditText"
+        <androidx.cardview.widget.CardView
+            xmlns:card_view="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            app:cardBackgroundColor="@color/surface_surface_1"
+            app:contentPadding="0dp"
+            app:cardCornerRadius="15dp"
+            card_view:cardElevation="5dp"
+            card_view:cardUseCompatPadding="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/ic_icons_android_ic_search"/>
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="216dp"
+            android:layout_height="20dp"
             android:hint="@string/searchCities"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:paddingLeft="20dp"
             style="@style/BodyLargeNLv2Left"
             android:background="@color/surface_surface_1"
-            android:layout_margin="12dp"/>
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginHorizontal="64dp"
+            />
+
+        </androidx.cardview.widget.CardView>
 
 
 
@@ -42,10 +61,11 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="44dp"
         android:id="@+id/recycler_view"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         android:background="@color/surface_surface_0"
+        android:padding="4dp"
 
         />
 
@@ -53,7 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/recentCities"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="40dp"
         android:layout_marginLeft="12dp"
         style="@style/HeadlineSmallNLv2Left"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
@@ -68,7 +88,7 @@
             app:layout_constraintTop_toBottomOf="@id/recentTitle"
             android:layout_marginTop="12dp"
             android:scrollbars="vertical"
-            android:background="@color/surface_surface_1"
+            android:background="@color/surface_surface_0"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="12dp"
