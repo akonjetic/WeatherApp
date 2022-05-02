@@ -18,6 +18,8 @@ class SearchCitiesAdapter(
     private val citiesList: ArrayList<LocationSearchResponse>
 ) : RecyclerView.Adapter<SearchCitiesAdapter.SearchCitiesViewHolder>(){
 
+    val limit = 1
+
     class SearchCitiesViewHolder(view: View) : RecyclerView.ViewHolder(view){
         val binding = SearchCityItemBinding.bind(view)
     }
@@ -42,7 +44,11 @@ class SearchCitiesAdapter(
     }
 
     override fun getItemCount(): Int {
-        return citiesList.size
+        if(citiesList.size > limit){
+            return limit
+        } else{
+            return citiesList.size
+        }
     }
 
 

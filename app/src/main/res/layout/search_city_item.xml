@@ -4,14 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
     >
 
    <TextView
+       style="@style/BodyMediumNLv2Left"
        android:layout_width="0dp"
-       android:layout_height="wrap_content"
+       android:layout_height="20dp"
        android:id="@+id/cityName"
-       android:layout_margin="12dp"
-       android:textSize="16sp"
+       android:background="@color/surface_surface_0"
+
+       android:layout_marginLeft="40dp"
        app:layout_constraintTop_toTopOf="parent"
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintEnd_toEndOf="parent"
