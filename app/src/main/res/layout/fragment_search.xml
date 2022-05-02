@@ -17,16 +17,29 @@
         android:layout_margin="12dp"/>
 
     <FrameLayout
+        android:id="@+id/firstFrame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintTop_toBottomOf="@id/searchEditText"
-        android:layout_marginTop="56dp">
+        android:layout_marginTop="56dp"
+        >
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="200dp"
         android:id="@+id/recycler_view"
         android:padding="16dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="200dp"
+            android:id="@+id/recentRecycler"
+            android:padding="16dp"
+            />
+
     </FrameLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

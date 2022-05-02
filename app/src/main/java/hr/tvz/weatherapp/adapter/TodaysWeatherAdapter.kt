@@ -55,6 +55,15 @@ class TodaysWeatherAdapter(
             holder.binding.weatherType.load(
                 photoUrl + theDay.weather_state_abbr + ".ico"
             )
+
+            /*for(item in days!!){
+                val dateInUse = formatter.parse(item.applicable_date)
+                holder.binding.time.text = SimpleDateFormat("EE").format(dateInUse)
+                holder.binding.weatherType.load(
+                    photoUrl + item.weather_state_abbr + ".ico"
+                )
+                holder.binding.temp.text = item.the_temp.toInt().toString() + "°"
+            }*/
         }
 
         //holder.binding.root.se

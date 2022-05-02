@@ -10,6 +10,7 @@ import hr.tvz.weatherapp.R
 import hr.tvz.weatherapp.databinding.SearchCityItemBinding
 import hr.tvz.weatherapp.model.ChosenCity
 import hr.tvz.weatherapp.model.EXTRA_CITY
+import hr.tvz.weatherapp.model.FAVORITE
 import hr.tvz.weatherapp.network.model.LocationSearchResponse
 
 class SearchCitiesAdapter(
@@ -33,6 +34,7 @@ class SearchCitiesAdapter(
         holder.binding.root.setOnClickListener {
             val intent = Intent(context, ChosenCity::class.java).apply {
                 putExtra(EXTRA_CITY, city.woeid)
+              //  putExtra(FAVORITE, city.)
             }
 
             context.startActivity(intent)

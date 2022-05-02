@@ -15,6 +15,7 @@
     <string name="pressure">Pressure:</string>
     <string name="visibility">Visibility:</string>
     <string name="accuracy">Accuracy:</string>
+    <string name="myCitiesTitle">My Cities</string>
     <string-array name="city_info_array">
         <item>MIN / MAX</item>
         <item>WIND</item>

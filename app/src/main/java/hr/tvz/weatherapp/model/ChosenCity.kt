@@ -22,6 +22,7 @@ import kotlin.coroutines.CoroutineContext
 
 
 const val EXTRA_CITY = "EXTRA_CITY"
+const val FAVORITE = "FAVORITE"
 
 class ChosenCity : AppCompatActivity(){
 
@@ -38,6 +39,9 @@ class ChosenCity : AppCompatActivity(){
         setContentView(view)
 
         val chosenCity = intent.getIntExtra(EXTRA_CITY, 0)
+        var isItFavorite = intent.getBooleanExtra(FAVORITE, false)
+        var unfavorited : Boolean = false
+        var buttonClickedFav: Boolean = false
         val date = getCurrentDateTime()
         val dateInStringS = date.toString("yyyy/MM/dd")
 
@@ -50,10 +54,27 @@ class ChosenCity : AppCompatActivity(){
         viewModel.cityDataSpecificDate.observe(this){
             val adapter = TodaysWeatherAdapter(applicationContext, it, null, true)
             binding.todaysWeatherRecycler.adapter = adapter
+
         }
 
         binding.next5DaysWeatherRecycler.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
         binding.cityInfoRecycler.layoutManager = GridLayoutManager(applicationContext, 3)
+
+        if(isItFavorite){
+            val resourceID = applicationContext.resources.getIdentifier(
+                "ic_icons_android_ic_star_1",
+                "drawable",
+                applicationContext.packageName
+            )
+            binding.favoriteIcon.setImageResource(resourceID)
+        } else{
+                val resourceID = applicationContext.resources.getIdentifier(
+                    "ic_icons_android_ic_star_0",
+                    "drawable",
+                    applicationContext.packageName
+                )
+                binding.favoriteIcon.setImageResource(resourceID)
+            }
 
 
 
@@ -64,10 +85,53 @@ class ChosenCity : AppCompatActivity(){
             val adapter2 = ChosenCityInfoAdapter(applicationContext, viewModel.cityDataSpecificDate.value)
             binding.cityInfoRecycler.adapter = adapter2
 
+            binding.toolbarTitle.text = viewModel.cityData.value?.title
+
+            binding.favoriteIcon.setOnClickListener {
+
+                if (!isItFavorite) {
+                    viewModel.insertFavoriteCity(applicationContext, viewModel.cityData.value!!)
+                    val resourceID = applicationContext.resources.getIdentifier(
+                        "ic_icons_android_ic_star_1",
+                        "drawable",
+                        applicationContext.packageName
+                    )
+                    binding.favoriteIcon.setImageResource(resourceID)
+                    unfavorited = false
+                    buttonClickedFav = true
+
+                } else{
+                    viewModel.removeFavoriteCity(applicationContext, viewModel.cityData.value!!)
+                    val resourceID = applicationContext.resources.getIdentifier(
+                        "ic_icons_android_ic_star_0",
+                        "drawable",
+                        applicationContext.packageName
+                    )
+                    binding.favoriteIcon.setImageResource(resourceID)
+
+                    unfavorited = true
+                    buttonClickedFav = true
+                }
+
+
+            }
+            viewModel.insertRecentCity(this, viewModel.cityData.value!!)
+
+            if(!unfavorited and isItFavorite){
+               // viewModel.insertFavoriteCity(applicationContext, viewModel.cityData.value!!)
+                it.favorite = true
+            }
+
+            buttonClickedFav = false
         }
 
 
-            binding.toolbarTitle.text = viewModel.cityData.value?.title
+
+        //u bazu doda locationsearchresponse
+
+
+
+
 
 
 

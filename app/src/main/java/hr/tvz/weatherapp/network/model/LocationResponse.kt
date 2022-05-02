@@ -1,12 +1,28 @@
 package hr.tvz.weatherapp.network.model
 
-data class LocationResponse(
-    val consolidated_weather: ArrayList<CityData>,
-    val time: String,
-    val title: String,
-    val timezone: String
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
+import java.util.*
+import kotlin.collections.ArrayList
 
-)
+@Entity(tableName = "RecentCities")
+data class LocationResponse(
+
+
+    @Ignore var consolidated_weather: ArrayList<CityData>,
+    var time: String,
+    var title: String,
+    @PrimaryKey
+    var woeid: Long,
+    var latt_long: String,
+    var timezone: String,
+    var favorite: Boolean,
+    var crrnPos: Int
+
+){
+    constructor() : this(arrayListOf(), "", "", 0, "", "", false, 0)
+}
 
 
 

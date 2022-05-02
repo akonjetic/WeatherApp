@@ -53,7 +53,7 @@ class ChosenCityInfoAdapter (
             cityData.min_temp.toInt().toString() + "°" + "/" + cityData.max_temp.toInt()
                 .toString() + "°"
         val wind: String =
-            cityData.wind_speed.toInt().toString() + " km/h (" + cityData.wind_direction + ")"
+            cityData.wind_speed.toInt().toString() + " km/h (" + cityData.wind_direction_compass + ")"
 
         return arrayListOf(
             minMax,
