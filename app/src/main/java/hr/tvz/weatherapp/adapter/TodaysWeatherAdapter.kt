@@ -1,5 +1,6 @@
 package hr.tvz.weatherapp.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +10,6 @@ import coil.load
 import hr.tvz.weatherapp.R
 import hr.tvz.weatherapp.databinding.TodaysWeatherItemBinding
 import hr.tvz.weatherapp.network.model.CityData
-import hr.tvz.weatherapp.network.model.LocationResponse
 import java.text.SimpleDateFormat
 
 class TodaysWeatherAdapter(
@@ -19,9 +19,10 @@ class TodaysWeatherAdapter(
     private val todayOr7Day: Boolean
 ) : RecyclerView.Adapter<TodaysWeatherAdapter.TodaysWeatherViewHolder>(){
 
-    val photoUrl = "https://www.metaweather.com/static/img/weather/ico/"
-    val limit = 12
-    val formatter = SimpleDateFormat("yyyy-MM-dd")
+    private val photoUrl = "https://www.metaweather.com/static/img/weather/ico/"
+    private val limit = 12
+    @SuppressLint("SimpleDateFormat")
+    private val formatter = SimpleDateFormat("yyyy-MM-dd")
 
     class TodaysWeatherViewHolder(view: View) : RecyclerView.ViewHolder(view){
         val binding = TodaysWeatherItemBinding.bind(view)
@@ -35,6 +36,7 @@ class TodaysWeatherAdapter(
         return TodaysWeatherViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n", "SimpleDateFormat")
     override fun onBindViewHolder(
         holder: TodaysWeatherAdapter.TodaysWeatherViewHolder,
         position: Int
@@ -55,26 +57,16 @@ class TodaysWeatherAdapter(
             holder.binding.weatherType.load(
                 photoUrl + theDay.weather_state_abbr + ".ico"
             )
-
-            /*for(item in days!!){
-                val dateInUse = formatter.parse(item.applicable_date)
-                holder.binding.time.text = SimpleDateFormat("EE").format(dateInUse)
-                holder.binding.weatherType.load(
-                    photoUrl + item.weather_state_abbr + ".ico"
-                )
-                holder.binding.temp.text = item.the_temp.toInt().toString() + "°"
-            }*/
         }
 
-        //holder.binding.root.se
     }
 
     override fun getItemCount(): Int {
-       if(todayOr7Day) {
-           if (hoursList!!.size > limit) return limit else return hoursList.size
-       } else{
-           return 5
-       }
+        return if(todayOr7Day) {
+            if (hoursList!!.size > limit) limit else hoursList.size
+        } else{
+            5
+        }
     }
 
 

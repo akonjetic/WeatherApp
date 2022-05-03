@@ -4,21 +4,17 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import coil.load
 import hr.tvz.weatherapp.MainActivityViewModel
 import hr.tvz.weatherapp.adapter.ChosenCityInfoAdapter
 import hr.tvz.weatherapp.adapter.TodaysWeatherAdapter
 import hr.tvz.weatherapp.databinding.ChosenCityBinding
-import hr.tvz.weatherapp.helpers.CityInfoHelper
-import hr.tvz.weatherapp.network.model.CityData
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.coroutines.CoroutineContext
 
 
 const val EXTRA_CITY = "EXTRA_CITY"
@@ -28,6 +24,7 @@ class ChosenCity : AppCompatActivity(){
 
     private lateinit var binding: ChosenCityBinding
     private val viewModel: MainActivityViewModel by viewModels()
+    private val photoUrl = "https://www.metaweather.com/static/img/weather/ico/"
 
 
     @SuppressLint("SetTextI18n")
@@ -40,16 +37,21 @@ class ChosenCity : AppCompatActivity(){
 
         val chosenCity = intent.getIntExtra(EXTRA_CITY, 0)
         var isItFavorite = intent.getBooleanExtra(FAVORITE, false)
-        var unfavorited : Boolean = false
+
+        var unfavorited = false
+
+        //date-time helper neki
         val date = getCurrentDateTime()
         val dateInStringS = date.toString("yyyy/MM/dd")
 
 
-        binding.todaysWeatherRecycler.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
 
         viewModel.getCityDataSpecificDate(chosenCity, dateInStringS)
         viewModel.getSpecificCityData(chosenCity)
 
+        binding.todaysWeatherRecycler.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
+
+        //vrijeme po satima
         viewModel.cityDataSpecificDate.observe(this){
             val adapter = TodaysWeatherAdapter(applicationContext, it, null, true)
             binding.todaysWeatherRecycler.adapter = adapter
@@ -77,6 +79,9 @@ class ChosenCity : AppCompatActivity(){
 
 
 
+
+
+        //next 5 days i info o gradu
         viewModel.cityData.observe(this){
             val adapter = TodaysWeatherAdapter(applicationContext, viewModel.cityDataSpecificDate.value!!, it.consolidated_weather, false)
             binding.next5DaysWeatherRecycler.adapter = adapter
@@ -84,10 +89,30 @@ class ChosenCity : AppCompatActivity(){
             val adapter2 = ChosenCityInfoAdapter(applicationContext, viewModel.cityDataSpecificDate.value!!)
             binding.cityInfoRecycler.adapter = adapter2
 
+
+            //treba probat dodat title u toolbar, ne u textview
             binding.toolbarTitle.text = viewModel.cityData.value?.title
 
 
+            //neki date-time helper
+            val dateWithDay =  LocalDate.parse(viewModel.cityData.value?.time?.subSequence(0, 10), DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+            val dateWithDayFormatted = dateWithDay.format(DateTimeFormatter.ofPattern("E, MMM dd"))
+            println(dateWithDayFormatted)
 
+            binding.dayDate.text = dateWithDayFormatted
+
+            val currentTimeHour = viewModel.cityData.value?.time?.subSequence(11, 13).toString().toInt()
+            val currentTimeMin = viewModel.cityData.value?.time?.subSequence(14, 16).toString()
+            val timeFinal = currentTimeHour.toString() + ":" + currentTimeMin + " (" + viewModel.cityData.value?.timezone +")"
+
+            binding.timeHour.text = timeFinal
+            binding.weatherDesc.text = viewModel.cityData.value?.consolidated_weather!![0].weather_state_name
+            binding.tempBig.text = viewModel.cityData.value?.consolidated_weather!![0].the_temp.toInt().toString() + "°C"
+            binding.weatherIcon.load(photoUrl + viewModel.cityData.value?.consolidated_weather!![0].weather_state_abbr + ".ico")
+
+
+
+            //jel ima neki ljepsi nacin
             binding.favoriteIcon.setOnClickListener {
 
                 if (!isItFavorite) {
@@ -117,25 +142,19 @@ class ChosenCity : AppCompatActivity(){
             viewModel.insertRecentCity(this, viewModel.cityData.value!!)
 
             if(!unfavorited and isItFavorite){
-               // viewModel.insertFavoriteCity(applicationContext, viewModel.cityData.value!!)
                 it.favorite = true
             }
 
         }
 
-
-
-        //u bazu doda locationsearchresponse
-
-
-
-
-
-
+        binding.backArrow.setOnClickListener {
+            finish()
+        }
 
         }
 
 
+    //neki date-time helper
     private fun Date.toString(format: String, locale: Locale = Locale.getDefault()): String {
         val formatter = SimpleDateFormat(format, locale)
         return formatter.format(this)

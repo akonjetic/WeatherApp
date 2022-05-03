@@ -2,16 +2,11 @@ package hr.tvz.weatherapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.lifecycleScope
 import hr.tvz.weatherapp.databinding.ActivityMainBinding
 import hr.tvz.weatherapp.fragment.FavoritesFragment
 import hr.tvz.weatherapp.fragment.SearchFragment
 import hr.tvz.weatherapp.fragment.SettingsFragment
-import hr.tvz.weatherapp.network.model.LocationSearchResponse
 
 class MainActivity : AppCompatActivity() {
 

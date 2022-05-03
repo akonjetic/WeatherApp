@@ -1,8 +1,5 @@
 package hr.tvz.weatherapp.network.model
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-
 
 data class LocationSearchResponse(
     val title: String,

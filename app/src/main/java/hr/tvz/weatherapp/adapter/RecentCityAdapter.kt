@@ -1,17 +1,20 @@
 package hr.tvz.weatherapp.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import hr.tvz.weatherapp.R
 import hr.tvz.weatherapp.database.CityDatabase
 import hr.tvz.weatherapp.databinding.RecentCityItemBinding
 import hr.tvz.weatherapp.model.ChosenCity
 import hr.tvz.weatherapp.model.EXTRA_CITY
 import hr.tvz.weatherapp.model.FAVORITE
+import hr.tvz.weatherapp.network.Network
 import hr.tvz.weatherapp.network.model.LocationResponse
 import kotlinx.coroutines.runBlocking
 
@@ -24,18 +27,23 @@ class RecentCityAdapter(
         val binding = RecentCityItemBinding.bind(view)
     }
 
+    private val photoUrl = "https://www.metaweather.com/static/img/weather/ico/"
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecentCityViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.recent_city_item, parent, false)
         return RecentCityViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: RecentCityViewHolder, position: Int) {
         val cityDatabase = CityDatabase.getDatabase(context)!!
+        val cityData = runBlocking { Network().getService().getLocation(recentsList[position].woeid.toInt())}
 
        val recent = recentsList[position]
         holder.binding.cityName.text = recent.title
-        holder.binding.lattLong.text = recent.latt_long
+        holder.binding.lattLong.text = cityData.timezone
 
+        // jednostavnije napisat ?
         if(!recent.favorite){
             val resourceID = context.resources.getIdentifier(
                 "ic_icons_android_ic_star_0",
@@ -76,6 +84,9 @@ class RecentCityAdapter(
                 runBlocking { cityDatabase.getCityDao().insertCity(recent) }
             }
         }
+
+        holder.binding.temperature.text = cityData.consolidated_weather[0].the_temp.toInt().toString() + "°C"
+        holder.binding.weatherType.load(photoUrl + cityData.consolidated_weather[0].weather_state_abbr + ".ico")
 
         holder.binding.root.setOnClickListener {
             val intent = Intent(context, ChosenCity::class.java).apply {

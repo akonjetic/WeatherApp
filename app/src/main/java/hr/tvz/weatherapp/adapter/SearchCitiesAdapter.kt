@@ -10,7 +10,6 @@ import hr.tvz.weatherapp.R
 import hr.tvz.weatherapp.databinding.SearchCityItemBinding
 import hr.tvz.weatherapp.model.ChosenCity
 import hr.tvz.weatherapp.model.EXTRA_CITY
-import hr.tvz.weatherapp.model.FAVORITE
 import hr.tvz.weatherapp.network.model.LocationSearchResponse
 
 class SearchCitiesAdapter(
@@ -18,7 +17,7 @@ class SearchCitiesAdapter(
     private val citiesList: ArrayList<LocationSearchResponse>
 ) : RecyclerView.Adapter<SearchCitiesAdapter.SearchCitiesViewHolder>(){
 
-    val limit = 1
+    private val limit = 1
 
     class SearchCitiesViewHolder(view: View) : RecyclerView.ViewHolder(view){
         val binding = SearchCityItemBinding.bind(view)
@@ -36,7 +35,6 @@ class SearchCitiesAdapter(
         holder.binding.root.setOnClickListener {
             val intent = Intent(context, ChosenCity::class.java).apply {
                 putExtra(EXTRA_CITY, city.woeid)
-              //  putExtra(FAVORITE, city.)
             }
 
             context.startActivity(intent)
@@ -44,10 +42,10 @@ class SearchCitiesAdapter(
     }
 
     override fun getItemCount(): Int {
-        if(citiesList.size > limit){
-            return limit
+        return if(citiesList.size > limit){
+            limit
         } else{
-            return citiesList.size
+            citiesList.size
         }
     }
 

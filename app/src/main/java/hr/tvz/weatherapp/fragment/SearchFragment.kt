@@ -9,8 +9,6 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import hr.tvz.weatherapp.MainActivityViewModel
-import hr.tvz.weatherapp.R
-import hr.tvz.weatherapp.adapter.FavoriteCityAdapter
 import hr.tvz.weatherapp.adapter.RecentCityAdapter
 import hr.tvz.weatherapp.adapter.SearchCitiesAdapter
 import hr.tvz.weatherapp.databinding.FragmentSearchBinding
@@ -30,7 +28,7 @@ class SearchFragment : Fragment() {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        //binding.searchEditText.background = resources.getDrawable(R.color.black)
+
 
         viewModel.listOfLocations.observe(viewLifecycleOwner){
             val adapter = SearchCitiesAdapter(requireContext(), it)
@@ -47,8 +45,7 @@ class SearchFragment : Fragment() {
                 }
             }
 
-        //na promjenu liste u bazi podataka, on u novi adapter preda listu iz baze
-        //u novom adapteru on fetcha nazive iz baze (a vrijeme i temp s interneta?)
+
 
         binding.recentRecycler.layoutManager = LinearLayoutManager(requireContext())
 
@@ -57,11 +54,7 @@ class SearchFragment : Fragment() {
             binding.recentRecycler.adapter = adapter
         }
 
-
-
         viewModel.getRecentCitiesFromDB(requireContext())
-
-
 
         return binding.root
     }
@@ -85,15 +78,12 @@ class SearchFragment : Fragment() {
                binding.recyclerView.visibility = View.GONE           }
         }
 
-
         binding.recentRecycler.layoutManager = LinearLayoutManager(requireContext())
 
         viewModel.recentCitiesFromDB.observe(viewLifecycleOwner) {
             val adapter = RecentCityAdapter(requireContext(), it)
             binding.recentRecycler.adapter = adapter
         }
-
-
 
         viewModel.getRecentCitiesFromDB(requireContext())
     }

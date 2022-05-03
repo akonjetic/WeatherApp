@@ -22,7 +22,8 @@
         app:layout_constraintTop_toBottomOf="@id/infoIcon"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/infoValue" />
+        app:layout_constraintBottom_toTopOf="@id/infoValue"
+        style="@style/DescriptionNLv2Center"/>
 
 
 
@@ -33,6 +34,7 @@
         android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/infoName"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        style="@style/BodyMediumNLv1Center"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

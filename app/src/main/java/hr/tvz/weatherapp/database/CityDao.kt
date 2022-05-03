@@ -2,7 +2,6 @@ package hr.tvz.weatherapp.database
 
 import androidx.room.*
 import hr.tvz.weatherapp.network.model.LocationResponse
-import hr.tvz.weatherapp.network.model.LocationSearchResponse
 
 @Dao
 interface CityDao {

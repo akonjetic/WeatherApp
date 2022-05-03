@@ -5,13 +5,10 @@ import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import hr.tvz.weatherapp.MainActivityViewModel
 import hr.tvz.weatherapp.R
 import hr.tvz.weatherapp.databinding.ChosenCityInfoItemBinding
 import hr.tvz.weatherapp.network.model.CityData
-import kotlinx.coroutines.runBlocking
 
 class ChosenCityInfoAdapter (
     private val context: Context,
@@ -46,6 +43,7 @@ class ChosenCityInfoAdapter (
         holder.binding.infoName.text = dataNames[position]
         holder.binding.infoIcon.setImageResource(resourceID)
         holder.binding.infoIcon.imageTintList = ColorStateList.valueOf( context.resources.getColor(R.color.color_primary))
+
     }
 
     override fun getItemCount(): Int {
@@ -67,7 +65,7 @@ class ChosenCityInfoAdapter (
             cityData.humidity.toInt().toString() + "%",
             cityData.air_pressure.toInt().toString() + "hPa",
             cityData.visibility.toInt().toString() + " km",
-            cityData.predictability.toInt().toString() + "%"
+            cityData.predictability.toString() + "%"
         )
     }
 }

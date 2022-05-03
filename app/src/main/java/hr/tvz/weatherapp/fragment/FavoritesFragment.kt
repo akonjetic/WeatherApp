@@ -1,5 +1,6 @@
 package hr.tvz.weatherapp.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import hr.tvz.weatherapp.MainActivityViewModel
 import hr.tvz.weatherapp.R
-import hr.tvz.weatherapp.adapter.DragManagerAdapter
 import hr.tvz.weatherapp.adapter.FavoriteCityAdapter
 import hr.tvz.weatherapp.databinding.FragmentFavoritesBinding
 import java.util.*
@@ -24,9 +24,10 @@ class FavoritesFragment : Fragment() {
     private var _binding: FragmentFavoritesBinding? = null
     private val binding get() = _binding!!
 
-    var editable = false
+    private var editable = false
 
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,15 +36,11 @@ class FavoritesFragment : Fragment() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
 
+
         viewModel.favoriteCitiesFromDB.observe(viewLifecycleOwner){
             val adapter = FavoriteCityAdapter(requireContext(), it)
             binding.recyclerView.adapter = adapter
 
-           // val itemTouchHelper = ItemTouchHelper(simpleCallback)
-
-           /* val callback = DragManagerAdapter(adapter, requireContext(), UP.or(DOWN), START.or(END))
-            val helper = ItemTouchHelper(callback)
-            helper.attachToRecyclerView(binding.recyclerView)*/
 
             var simpleCallback = object  : ItemTouchHelper.SimpleCallback(UP.or(DOWN), START.or(END)){
                 override fun onMove(
@@ -65,6 +62,7 @@ class FavoritesFragment : Fragment() {
                     return true
                 }
 
+                @SuppressLint("NotifyDataSetChanged")
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                     val position = viewHolder.adapterPosition
                     adapter.removeItem(position)
@@ -89,21 +87,19 @@ class FavoritesFragment : Fragment() {
                 }
             }
 
-            //itemTouchHelper.attachToRecyclerView(binding.recyclerView)
-
         }
 
         viewModel.getFavoriteCitiesFromDB(requireContext())
 
 
-
-
-
         return binding.root
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onResume() {
         super.onResume()
+
+
 
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
@@ -112,12 +108,6 @@ class FavoritesFragment : Fragment() {
             val adapter = FavoriteCityAdapter(requireContext(), it)
             binding.recyclerView.adapter = adapter
 
-            // val itemTouchHelper = ItemTouchHelper(simpleCallback)
-
-            /* val callback = DragManagerAdapter(adapter, requireContext(), UP.or(DOWN), START.or(END))
-             val helper = ItemTouchHelper(callback)
-             helper.attachToRecyclerView(binding.recyclerView)*/
-
             var simpleCallback = object  : ItemTouchHelper.SimpleCallback(UP.or(DOWN), START.or(END)){
                 override fun onMove(
                     recyclerView: RecyclerView,
@@ -138,6 +128,7 @@ class FavoritesFragment : Fragment() {
                     return true
                 }
 
+                @SuppressLint("NotifyDataSetChanged")
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                     val position = viewHolder.adapterPosition
                     adapter.removeItem(position)
@@ -162,7 +153,6 @@ class FavoritesFragment : Fragment() {
                 }
             }
 
-            //itemTouchHelper.attachToRecyclerView(binding.recyclerView)
 
         }
 
