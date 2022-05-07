@@ -9,10 +9,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 class Network {
 
     private val service: WeatherApiService
-    val baseUrl = "https://www.metaweather.com/"
+    private val baseUrl = "https://www.metaweather.com/"
 
     init {
         val interceptor = HttpLoggingInterceptor()
+        interceptor.level = HttpLoggingInterceptor.Level.BASIC
         val httpClient = OkHttpClient.Builder().addInterceptor(interceptor)
         val retrofit = Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(GsonConverterFactory.create())
             .client(httpClient.build()).build()

@@ -4,29 +4,98 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment.SearchFragment">
+    tools:context=".fragment.SearchFragment"
+    android:background="@color/surface_surface_0">
 
-    <EditText
-        android:id="@+id/searchEditText"
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/searchCities"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="64dp"
+        app:layout_constraintBottom_toTopOf="@id/recycler_view"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_margin="12dp"/>
+        android:background="@color/color_primary"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintTop_toBottomOf="@id/searchEditText"
-        android:layout_marginTop="56dp">
+
+        <androidx.cardview.widget.CardView
+            xmlns:card_view="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            app:cardBackgroundColor="@color/surface_surface_1"
+            app:contentPadding="0dp"
+            app:cardCornerRadius="15dp"
+            card_view:cardElevation="5dp"
+            card_view:cardUseCompatPadding="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/ic_icons_android_ic_search"/>
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="216dp"
+            android:layout_height="20dp"
+            android:hint="@string/searchCities"
+            style="@style/BodyLargeNLv2Left"
+            android:background="@color/surface_surface_1"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginHorizontal="64dp"
+            />
+
+        </androidx.cardview.widget.CardView>
+
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="44dp"
         android:id="@+id/recycler_view"
-        android:padding="16dp"/>
-    </FrameLayout>
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        android:background="@color/surface_surface_0"
+        android:padding="4dp"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/recentCities"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="12dp"
+        style="@style/HeadlineSmallNLv2Left"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:id="@+id/recentTitle"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recentRecycler"
+            app:layout_constraintTop_toBottomOf="@id/recentTitle"
+            android:layout_marginTop="12dp"
+            android:scrollbars="vertical"
+            android:background="@color/surface_surface_0"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="12dp"
+
+            />
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

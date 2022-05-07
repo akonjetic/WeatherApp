@@ -1,60 +1,165 @@
 package hr.tvz.weatherapp.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.ItemTouchHelper.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import hr.tvz.weatherapp.MainActivityViewModel
 import hr.tvz.weatherapp.R
+import hr.tvz.weatherapp.adapter.FavoriteCityAdapter
+import hr.tvz.weatherapp.databinding.FragmentFavoritesBinding
+import java.util.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FavoritesFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FavoritesFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private val viewModel: MainActivityViewModel by activityViewModels()
+    private var _binding: FragmentFavoritesBinding? = null
+    private val binding get() = _binding!!
 
+    private var editable = false
+
+
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favorites, container, false)
-    }
+        _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FavoritesFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FavoritesFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+
+
+        viewModel.favoriteCitiesFromDB.observe(viewLifecycleOwner){
+            val adapter = FavoriteCityAdapter(requireContext(), it)
+            binding.recyclerView.adapter = adapter
+
+
+            var simpleCallback = object  : ItemTouchHelper.SimpleCallback(UP.or(DOWN), START.or(END)){
+                override fun onMove(
+                    recyclerView: RecyclerView,
+                    viewHolder: RecyclerView.ViewHolder,
+                    target: RecyclerView.ViewHolder
+                ): Boolean {
+                    var startPosition = viewHolder.adapterPosition
+                    var endPosition = target.adapterPosition
+
+                    Collections.swap(it, startPosition, endPosition)
+                    binding.recyclerView.adapter?.notifyItemMoved(startPosition, endPosition)
+
+                    it[startPosition].crrnPos = startPosition
+                    it[endPosition].crrnPos = endPosition
+                    viewModel.insertFavoriteCity(requireContext(), it[startPosition])
+                    viewModel.insertFavoriteCity(requireContext(), it[endPosition])
+
+                    return true
+                }
+
+                @SuppressLint("NotifyDataSetChanged")
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                    val position = viewHolder.adapterPosition
+                    adapter.removeItem(position)
+
+                    adapter.notifyDataSetChanged()
+                }
+
+            }
+            val itemTouchHelper = ItemTouchHelper(simpleCallback)
+
+
+            binding.editIcon.setOnClickListener {
+                if(!editable){
+                    editable = true
+                    binding.editIcon.setImageDrawable(resources.getDrawable(R.drawable.ic_icons_android_ic_done))
+                    itemTouchHelper.attachToRecyclerView(binding.recyclerView)
+                }
+                else{
+                    editable = false
+                    binding.editIcon.setImageDrawable(resources.getDrawable(R.drawable.ic_icons_android_ic_edit))
+                    itemTouchHelper.attachToRecyclerView(null)
                 }
             }
+
+        }
+
+        viewModel.getFavoriteCitiesFromDB(requireContext())
+
+
+        return binding.root
     }
+
+    @SuppressLint("UseCompatLoadingForDrawables")
+    override fun onResume() {
+        super.onResume()
+
+
+
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+
+        viewModel.favoriteCitiesFromDB.observe(viewLifecycleOwner){
+            val adapter = FavoriteCityAdapter(requireContext(), it)
+            binding.recyclerView.adapter = adapter
+
+            var simpleCallback = object  : ItemTouchHelper.SimpleCallback(UP.or(DOWN), START.or(END)){
+                override fun onMove(
+                    recyclerView: RecyclerView,
+                    viewHolder: RecyclerView.ViewHolder,
+                    target: RecyclerView.ViewHolder
+                ): Boolean {
+                    var startPosition = viewHolder.adapterPosition
+                    var endPosition = target.adapterPosition
+
+                    Collections.swap(it, startPosition, endPosition)
+                    binding.recyclerView.adapter?.notifyItemMoved(startPosition, endPosition)
+
+                    it[startPosition].crrnPos = startPosition
+                    it[endPosition].crrnPos = endPosition
+                    viewModel.insertFavoriteCity(requireContext(), it[startPosition])
+                    viewModel.insertFavoriteCity(requireContext(), it[endPosition])
+
+                    return true
+                }
+
+                @SuppressLint("NotifyDataSetChanged")
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                    val position = viewHolder.adapterPosition
+                    adapter.removeItem(position)
+
+                    adapter.notifyDataSetChanged()
+                }
+
+            }
+            val itemTouchHelper = ItemTouchHelper(simpleCallback)
+
+
+            binding.editIcon.setOnClickListener {
+                if(!editable){
+                    editable = true
+                    binding.editIcon.setImageDrawable(resources.getDrawable(R.drawable.ic_icons_android_ic_done))
+                    itemTouchHelper.attachToRecyclerView(binding.recyclerView)
+                }
+                else{
+                    editable = false
+                    binding.editIcon.setImageDrawable(resources.getDrawable(R.drawable.ic_icons_android_ic_edit))
+                    itemTouchHelper.attachToRecyclerView(null)
+                }
+            }
+
+
+        }
+
+        viewModel.getFavoriteCitiesFromDB(requireContext())
+    }
+
+
+
+
 }

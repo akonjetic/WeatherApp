@@ -19,15 +19,5 @@ class TodayWeatherView(context: Context, attr: AttributeSet) : FrameLayout(conte
         addView(binding.root)
 
     }
-    fun getTimeTextView(): TextView{
-        return binding.time
-    }
 
-    fun getTempTextView(): TextView{
-        return binding.temp
-    }
-
-    fun getWeatherImageView(): ImageView{
-        return binding.weatherType
-    }
 }
