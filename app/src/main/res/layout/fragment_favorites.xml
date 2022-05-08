@@ -27,6 +27,7 @@
             android:text="@string/myCitiesTitle"
             style="@style/HeadlineMediumOnColorLeft"/>
 
+
         <ImageView
             android:id="@+id/editIcon"
             android:layout_width="24dp"
@@ -34,7 +35,14 @@
             android:layout_gravity="right"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
-            android:src="@drawable/ic_icons_android_ic_edit" />
+            android:src="@drawable/editable_selector" />
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:id="@+id/calendarIcon"
+            android:layout_gravity="right"
+            android:src="@drawable/ic_icons_android_ic_calendar"/>
 
 
     </androidx.appcompat.widget.Toolbar>

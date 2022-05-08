@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="wind">Viento:</string>
+    <string name="visibility">Visibilidad:</string>
+    <string name="today">Hoy</string>
+    <string name="humidity">Humedad:</string>
+    <string name="settingsTab">Ajustes:</string>
+    <string name="searchCities">Buscar Ciudades</string>
+    <string name="searchTab">Búsqueda</string>
+    <string name="recentCities">Recientes</string>
+    <string name="pressure">Presión:</string>
+    <string name="next7days">Próximos 5 días</string>
+    <string name="myCitiesTitle">Mis Ciudades</string>
+    <string name="minTemp">Min Temperatura</string>
+    <string name="unitMetric">Métrico</string>
+    <string name="maxTemp">Max Temperatura</string>
+    <string name="languageTitle">Idioma</string>
+    <string name="unitImperial">Imperial</string>
+    <string name="favoritesTab">Favoritas</string>
+    <string name="accuracy">Precisión</string>
+    <string name="unitTitle">Seleccione una unidad de medida</string>
+    <string name="cityTitle">Ciudad</string>
+    <string name="aboutWeb">Más Información</string>
+    <string name="aboutTitle">Sobre la aplicación</string>
+    <string name="clearFavoritesButton">LIMPIAR MI LISTA DE CIUDADES</string>
+    <string name="clearFavoritesAlertTitle">¿Limpiar mi lista de ciudades?</string>
+    <string name="clearFavoritesAlertText">Si borra su lista de ciudades, la pantalla Mis ciudades estará vacía.</string>
+    <string name="clearFavoritesAlertCancel">CANCELAR</string>
+    <string name="clearFavoritesAlertClear">LIMPIAR</string>
+    <string name="clearRecentsAlertTitle">¿Limpiar la lista de búsqueda reciente?</string>
+    <string name="clearRecentsAlertText">Si borra su lista de búsqueda reciente, su pantalla de inicio estará vacía.</string>
+    <string name="clearRecentsButton">"LIMPIAR LISTA DE BÚSQUEDA RECIENTE  "</string>
+    <string name="aboutAppNameTitle">Nombre de la Aplicación</string>
+    <string name="distance">Distancia:</string>
+    <string name="toastFav">Lista de Mis Ciudades es clara.</string>
+    <string name="toastRec">La lista de Búsqueda Reciente es clara.</string>
+    <string-array name="city_info_array">
+        <item>MIN / MAX</item>
+        <item>VIENTO</item>
+        <item>HUMEDAD</item>
+        <item>PRESIÓN</item>
+        <item>VISIBILIDAD</item>
+        <item>PRECISIÓN</item>
+    </string-array>
+</resources>

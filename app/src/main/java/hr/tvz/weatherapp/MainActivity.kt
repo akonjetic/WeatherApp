@@ -1,7 +1,7 @@
 package hr.tvz.weatherapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import hr.tvz.weatherapp.databinding.ActivityMainBinding
 import hr.tvz.weatherapp.fragment.FavoritesFragment
@@ -11,6 +11,12 @@ import hr.tvz.weatherapp.fragment.SettingsFragment
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+    companion object {
+        var metrics = true
+        var latt = 45.807
+        var long = 15.967
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,15 +32,13 @@ class MainActivity : AppCompatActivity() {
         setCurrentFragment(searchFragment)
 
         binding.bottomNavigation.setOnNavigationItemSelectedListener {
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.ic_search -> setCurrentFragment(searchFragment)
                 R.id.ic_favorites -> setCurrentFragment(favoritesFragment)
                 R.id.ic_settings -> setCurrentFragment(settingsFragment)
             }
             true
         }
-
-
     }
 
     private fun setCurrentFragment(fragment: Fragment) {

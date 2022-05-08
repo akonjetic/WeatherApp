@@ -21,5 +21,6 @@ interface CityDao {
     @Query("SELECT * FROM RecentCities WHERE favorite = 1 ORDER BY crrnPos ASC")
     suspend fun getAllFavoritesSorted(): List<LocationResponse>
 
-
+    @Query("DELETE FROM RecentCities")
+    suspend fun clearAllRecentCities()
 }

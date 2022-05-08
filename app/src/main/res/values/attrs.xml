@@ -4,4 +4,8 @@
         <attr name="timeText" format="string"/>
         <attr name="tempText" format="string"/>
     </declare-styleable>
+    <declare-styleable name="AboutTextView">
+        <attr name="titleText" format="string"/>
+        <attr name="valueText" format="string"/>
+    </declare-styleable>
 </resources>

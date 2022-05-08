@@ -3,17 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/FAKS/3. GODINA/SOFASCORE/dz/WeatherApp/app/src/main/res/drawable/bottom_nav_selector.xml" value="0.163" />
+        <entry key="..\:/FAKS/3. GODINA/SOFASCORE/dz/WeatherApp/app/src/main/res/drawable/button_background.xml" value="0.237" />
+        <entry key="..\:/FAKS/3. GODINA/SOFASCORE/dz/WeatherApp/app/src/main/res/drawable/editable_selector.xml" value="0.163" />
+        <entry key="..\:/FAKS/3. GODINA/SOFASCORE/dz/WeatherApp/app/src/main/res/drawable/favorite_selector.xml" value="0.1" />
         <entry key="..\:/FAKS/3. GODINA/SOFASCORE/dz/WeatherApp/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1" />
         <entry key="..\:/FAKS/3. GODINA/SOFASCORE/dz/WeatherApp/app/src/main/res/drawable/ic_icons_android_ic_star_0.xml" value="0.1735" />
         <entry key="..\:/FAKS/3. GODINA/SOFASCORE/dz/WeatherApp/app/src/main/res/drawable/rounder_corner_view.xml" value="0.1" />
+        <entry key="..\:/FAKS/3. GODINA/SOFASCORE/dz/WeatherApp/app/src/main/res/layout/about_layout.xml" value="0.259375" />
+        <entry key="..\:/FAKS/3. GODINA/SOFASCORE/dz/WeatherApp/app/src/main/res/layout/about_text_view.xml" value="0.12436676798378926" />
         <entry key="..\:/FAKS/3. GODINA/SOFASCORE/dz/WeatherApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/FAKS/3. GODINA/SOFASCORE/dz/WeatherApp/app/src/main/res/layout/chosen_city.xml" value="0.1" />
+        <entry key="..\:/FAKS/3. GODINA/SOFASCORE/dz/WeatherApp/app/src/main/res/layout/chosen_city.xml" value="0.25" />
         <entry key="..\:/FAKS/3. GODINA/SOFASCORE/dz/WeatherApp/app/src/main/res/layout/chosen_city_info_item.xml" value="0.12613981762917933" />
         <entry key="..\:/FAKS/3. GODINA/SOFASCORE/dz/WeatherApp/app/src/main/res/layout/city_item_view.xml" value="0.12436676798378926" />
         <entry key="..\:/FAKS/3. GODINA/SOFASCORE/dz/WeatherApp/app/src/main/res/layout/fragment_favorites.xml" value="0.2" />
-        <entry key="..\:/FAKS/3. GODINA/SOFASCORE/dz/WeatherApp/app/src/main/res/layout/fragment_search.xml" value="0.1" />
+        <entry key="..\:/FAKS/3. GODINA/SOFASCORE/dz/WeatherApp/app/src/main/res/layout/fragment_search.xml" value="0.264" />
         <entry key="..\:/FAKS/3. GODINA/SOFASCORE/dz/WeatherApp/app/src/main/res/layout/fragment_search_location.xml" value="0.12436676798378926" />
-        <entry key="..\:/FAKS/3. GODINA/SOFASCORE/dz/WeatherApp/app/src/main/res/layout/fragment_settings.xml" value="0.11676798378926039" />
+        <entry key="..\:/FAKS/3. GODINA/SOFASCORE/dz/WeatherApp/app/src/main/res/layout/fragment_settings.xml" value="0.264" />
         <entry key="..\:/FAKS/3. GODINA/SOFASCORE/dz/WeatherApp/app/src/main/res/layout/recent_city_item.xml" value="0.1" />
         <entry key="..\:/FAKS/3. GODINA/SOFASCORE/dz/WeatherApp/app/src/main/res/layout/search_city_item.xml" value="0.1" />
         <entry key="..\:/FAKS/3. GODINA/SOFASCORE/dz/WeatherApp/app/src/main/res/layout/today_weather_layout.xml" value="0.10625" />
