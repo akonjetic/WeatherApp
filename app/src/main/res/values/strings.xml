@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">WeatherApp</string>
+    <string name="app_name" translatable="false">WeatherApp</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="searchTab">Search</string>
     <string name="favoritesTab">Favorites</string>
     <string name="settingsTab">Settings</string>
@@ -33,4 +33,31 @@
         <item>visibility</item>
         <item>accuracy</item>
     </string-array>
+    <string name="unitTitle">Choose type of unit</string>
+    <string name="unitMetric">Metric</string>
+    <string name="unitImperial">Imperial</string>
+    <string name="languageTitle">Language</string>
+    <string name="cityTitle">City</string>
+    <string name="aboutTitle">About</string>
+    <string name="distance">Distance:</string>
+    <string name="toastFav">My Cities list is clear.</string>
+    <string name="toastRec">Recent search list is clear.</string>
+    <string name="aboutSubtitle" translatable="false">SofaScore Academy</string>
+    <string name="aboutClass" translatable="false">Class 2022</string>
+    <string name="aboutAppNameTitle">App Name</string>
+    <string name="aboutAppNameText" translatable="false">Super Cool Weather App</string>
+    <string name="aboutApiCreditTitle" translatable="false">API Credit</string>
+    <string name="aboutApiCreditText" translatable="false">metaweather</string>
+    <string name="aboutDeveloperTitle" translatable="false">Developer</string>
+    <string name="aboutDeveloperText" translatable="false">Ana Konjetić</string>
+    <string name="aboutWeb">MORE INFO</string>
+    <string name="clearFavoritesButton">CLEAR MY CITIES LIST</string>
+    <string name="clearRecentsButton">CLEAR RECENT SEARCH LIST</string>
+    <string name="clearRecentsAlertTitle">Clear recent search list?</string>
+    <string name="clearFavoritesAlertTitle">Clear my cities list?</string>
+    <string name="clearRecentsAlertText">If you clear your recent search list, your home screen will be empty.</string>
+    <string name="clearFavoritesAlertText">If you clear your city list, My Cities screen will be empty.</string>
+    <string name="clearFavoritesAlertCancel">CANCEL</string>đ
+    <string name="clearFavoritesAlertClear">CLEAR</string>
+    <string name="aboutText" translatable="false">Vestibulum rutrum quam vitae fringilla tincidunt. Suspendisse nec tortor urna. Ut laoreet sodales nisi, quis iaculis nulla iaculis.</string>
 </resources>

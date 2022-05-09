@@ -1,14 +1,230 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.SettingsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:id="@+id/appBarLayout"
+        app:layout_constraintTop_toTopOf="parent">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/surface_surface_1"
+        app:title="@string/settingsTab"
+        android:backgroundTint="@color/color_primary"
+        app:titleTextColor="@color/white"
+        app:titleTextAppearance="@style/HeadlineMediumOnColorLeft"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="@id/toolbar"
+        android:layout_marginTop="80dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/languageCV"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:card_view="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/surface_surface_0"
+        app:cardCornerRadius="16dp"
+        app:contentPadding="10dp"
+        app:layout_constraintTop_toTopOf="@id/toolbar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/cityCV"
+        app:strokeColor="@color/neutrals_n_lv_2"
+        app:strokeWidth="1dp"
+        android:layout_marginBottom="16dp"
+        card_view:cardUseCompatPadding="true"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="16dp"
+            android:layout_height="16dp"
+            style="@style/AssistiveSecondaryLeft"
+            android:text="@string/languageTitle"/>
+        <Spinner
+            android:layout_marginHorizontal="16dp"
+            android:id="@+id/languageSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="20dp"
+            style="@style/BodyLargeNLv1Left"
+            />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cityCV"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:card_view="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/surface_surface_0"
+        app:cardCornerRadius="16dp"
+        app:contentPadding="10dp"
+        app:layout_constraintTop_toTopOf="@id/languageCV"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/unitCV"
+        app:strokeColor="@color/neutrals_n_lv_2"
+        app:strokeWidth="1dp"
+        card_view:cardUseCompatPadding="true"
+        android:layout_marginHorizontal="16dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="16dp"
+            android:layout_height="16dp"
+            style="@style/AssistiveSecondaryLeft"
+            android:text="@string/cityTitle"/>
+        <Spinner
+            android:layout_marginHorizontal="16dp"
+            android:id="@+id/citySpinner"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="20dp"
+            style="@style/BodyLargeNLv1Left"
+            />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.cardview.widget.CardView
+        app:layout_constraintTop_toBottomOf="@id/cityCV"
+        android:id="@+id/unitCV"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:card_view="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/surface_surface_0"
+        app:cardCornerRadius="16dp"
+        app:contentPadding="10dp"
+        card_view:cardUseCompatPadding="true"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="40dp">
+
+    <TextView
+        android:text="@string/unitTitle"
+        style="@style/AssistiveNLv2Left"
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:layout_marginLeft="16dp"/>
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/unitRadioGroup"
+        android:orientation="horizontal"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="8dp"
+        android:checkedButton="@id/metricButton">
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/unitImperial"
+            android:id="@+id/imperialButton"
+            android:layout_marginLeft="16dp"
+            style="@style/BodyMediumNLv1Left"
+            android:buttonTint="@color/color_secondary"
+            />
+
+        <RadioButton
+            android:id="@+id/metricButton"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/unitMetric"
+            android:layout_marginLeft="16dp"
+            style="@style/BodyMediumNLv1Left"
+            android:buttonTint="@color/color_secondary"/>
+    </RadioGroup>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        app:layout_constraintTop_toBottomOf="@id/unitCV"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/aboutCV"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:card_view="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/surface_surface_0"
+        app:cardCornerRadius="16dp"
+        app:contentPadding="10dp"
+        card_view:cardUseCompatPadding="true"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="40dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:text="@string/aboutTitle"
+            style="@style/HeadlineMediumNLv1Left"
+            android:layout_marginHorizontal="16dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/aboutText"
+            android:layout_marginTop="32dp"
+            style="@style/BodyMediumNLv1Left"
+            android:layout_marginHorizontal="16dp"/>
+
+        <TextView
+            android:id="@+id/moreInfoTV"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            style="@style/ButtonLabelSecondaryCenter"
+            android:text="@string/aboutWeb"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="116dp"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/clearFavoritesButton"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        app:layout_constraintTop_toBottomOf="@id/aboutCV"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginHorizontal="16dp"
+        android:paddingVertical="8dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/button_background"
+        style="@style/ButtonLabelErrorCenter"
+        android:text="@string/clearFavoritesButton"/>
+
+    <TextView
+        android:id="@+id/clearRecentsButton"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        app:layout_constraintTop_toBottomOf="@id/clearFavoritesButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginHorizontal="16dp"
+        android:paddingVertical="8dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_background"
+        style="@style/ButtonLabelErrorCenter"
+        android:text="@string/clearRecentsButton"/>
+    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

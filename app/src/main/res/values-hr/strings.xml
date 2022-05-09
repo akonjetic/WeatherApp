@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="wind">Vjetar:</string>
+    <string name="visibility">Vidljivost:</string>
+    <string name="today">Danas</string>
+    <string name="humidity">Vlaga:</string>
+    <string name="settingsTab">Postavke</string>
+    <string name="searchCities">Pretražite Gradove</string>
+    <string name="searchTab">Pretraga</string>
+    <string name="recentCities">Nedavno</string>
+    <string name="pressure">Tlak:</string>
+    <string name="next7days">Sljedećih 5 Dana</string>
+    <string name="myCitiesTitle">Moji Gradovi</string>
+    <string name="minTemp">Min Temperatura:</string>
+    <string name="unitMetric">Metrički</string>
+    <string name="maxTemp">Max Temperatura:</string>
+    <string name="languageTitle">Jezik</string>
+    <string name="unitImperial">Imperijalni</string>
+    <string name="favoritesTab">Favoriti</string>
+    <string name="unitTitle">Odaberite mjerni sustav</string>
+    <string name="accuracy">Preciznost:</string>
+    <string name="cityTitle">Grad</string>
+    <string name="aboutTitle">O aplikaciji</string>
+    <string name="aboutWeb">VIŠE INFORMACIJA</string>
+    <string name="clearFavoritesButton">OČISTI MOJU LISTU GRADOVA</string>
+    <string name="clearFavoritesAlertTitle">Očistiti listu Moji gradovi?</string>
+    <string name="clearFavoritesAlertText">Ako očistite listu favorita, ekran Moji Gradovi će biti prazan.</string>
+    <string name="clearFavoritesAlertCancel">ODBACI</string>
+    <string name="clearFavoritesAlertClear">OČISTI</string>
+    <string name="clearRecentsAlertTitle">Očistiti listu Nedavno?</string>
+    <string name="clearRecentsAlertText">Ako očistite listu nedavnih pretraživanja, početni će biti prazan.</string>
+    <string name="clearRecentsButton">OČISTI LISTU NEDAVNIH PRETRAŽIVANJA</string>
+    <string name="aboutAppNameTitle">Ime Aplikacije</string>
+    <string name="distance">Udaljenost:</string>
+    <string name="toastFav">Lista Moji Gradovi je očišćena.</string>
+    <string name="toastRec">Lista Nedavna Pretraživanja je očišćenja</string>
+    <string-array name="city_info_array">
+        <item>MIN / MAX</item>
+        <item>VJETAR</item>
+        <item>VLAŽNOST</item>
+        <item>TLAK</item>
+        <item>VIDLJIVOST</item>
+        <item>PRECIZNOST</item>
+    </string-array>
+</resources>

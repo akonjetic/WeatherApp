@@ -15,11 +15,17 @@ import hr.tvz.weatherapp.network.model.LocationSearchResponse
 class SearchCitiesAdapter(
     private val context: Context,
     private val citiesList: ArrayList<LocationSearchResponse>
-) : RecyclerView.Adapter<SearchCitiesAdapter.SearchCitiesViewHolder>(){
+) : RecyclerView.Adapter<SearchCitiesAdapter.SearchCitiesViewHolder>() {
 
-    private val limit = 1
+    fun updateCitiesList(updated: ArrayList<LocationSearchResponse>) {
+        citiesList.clear()
+        citiesList.addAll(updated)
+        notifyDataSetChanged()
+    }
 
-    class SearchCitiesViewHolder(view: View) : RecyclerView.ViewHolder(view){
+    private val limit = 5
+
+    class SearchCitiesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = SearchCityItemBinding.bind(view)
     }
 
@@ -42,12 +48,10 @@ class SearchCitiesAdapter(
     }
 
     override fun getItemCount(): Int {
-        return if(citiesList.size > limit){
+        return if (citiesList.size > limit) {
             limit
-        } else{
+        } else {
             citiesList.size
         }
     }
-
-
 }

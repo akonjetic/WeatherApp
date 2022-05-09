@@ -7,14 +7,14 @@ import androidx.room.RoomDatabase
 import hr.tvz.weatherapp.network.model.LocationResponse
 
 @Database(entities = [LocationResponse::class], version = 4, exportSchema = false)
-abstract class CityDatabase: RoomDatabase() {
+abstract class CityDatabase : RoomDatabase() {
     abstract fun getCityDao(): CityDao
 
-    companion object{
+    companion object {
         private var instance: CityDatabase? = null
 
-        fun getDatabase(context: Context): CityDatabase?{
-            if(instance == null){
+        fun getDatabase(context: Context): CityDatabase? {
+            if (instance == null) {
                 instance = buildDatabase(context)
             }
             return instance

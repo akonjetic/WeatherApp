@@ -12,11 +12,10 @@ import androidx.recyclerview.widget.ItemTouchHelper.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import hr.tvz.weatherapp.MainActivityViewModel
-import hr.tvz.weatherapp.R
 import hr.tvz.weatherapp.adapter.FavoriteCityAdapter
 import hr.tvz.weatherapp.databinding.FragmentFavoritesBinding
+import hr.tvz.weatherapp.helpers.MappingHelper
 import java.util.*
-
 
 class FavoritesFragment : Fragment() {
 
@@ -26,23 +25,24 @@ class FavoritesFragment : Fragment() {
 
     private var editable = false
 
+    private val favoritesAdapter by lazy { FavoriteCityAdapter(requireContext(), arrayListOf()) }
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
+
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.adapter = favoritesAdapter
 
+        viewModel.favoriteCitiesDBAllData.observe(viewLifecycleOwner) {
 
+            favoritesAdapter.updateFavorites(it)
 
-        viewModel.favoriteCitiesFromDB.observe(viewLifecycleOwner){
-            val adapter = FavoriteCityAdapter(requireContext(), it)
-            binding.recyclerView.adapter = adapter
-
-
-            var simpleCallback = object  : ItemTouchHelper.SimpleCallback(UP.or(DOWN), START.or(END)){
+            var simpleCallback = object : ItemTouchHelper.SimpleCallback(UP.or(DOWN), START.or(END)) {
                 override fun onMove(
                     recyclerView: RecyclerView,
                     viewHolder: RecyclerView.ViewHolder,
@@ -54,10 +54,15 @@ class FavoritesFragment : Fragment() {
                     Collections.swap(it, startPosition, endPosition)
                     binding.recyclerView.adapter?.notifyItemMoved(startPosition, endPosition)
 
+                    val locationResponse = MappingHelper().mapToLocationResponseList(it)
+
                     it[startPosition].crrnPos = startPosition
                     it[endPosition].crrnPos = endPosition
-                    viewModel.insertFavoriteCity(requireContext(), it[startPosition])
-                    viewModel.insertFavoriteCity(requireContext(), it[endPosition])
+                    locationResponse[startPosition].crrnPos = startPosition
+                    locationResponse[endPosition].crrnPos = endPosition
+
+                    viewModel.insertFavoriteCity(requireContext(), locationResponse[startPosition])
+                    viewModel.insertFavoriteCity(requireContext(), locationResponse[endPosition])
 
                     return true
                 }
@@ -65,32 +70,27 @@ class FavoritesFragment : Fragment() {
                 @SuppressLint("NotifyDataSetChanged")
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                     val position = viewHolder.adapterPosition
-                    adapter.removeItem(position)
-
-                    adapter.notifyDataSetChanged()
+                    favoritesAdapter.removeItem(position)
+                    favoritesAdapter.notifyDataSetChanged()
                 }
-
             }
             val itemTouchHelper = ItemTouchHelper(simpleCallback)
 
-
             binding.editIcon.setOnClickListener {
-                if(!editable){
+                if (!editable) {
                     editable = true
-                    binding.editIcon.setImageDrawable(resources.getDrawable(R.drawable.ic_icons_android_ic_done))
+                    binding.editIcon.isActivated = editable
                     itemTouchHelper.attachToRecyclerView(binding.recyclerView)
-                }
-                else{
+                } else {
                     editable = false
-                    binding.editIcon.setImageDrawable(resources.getDrawable(R.drawable.ic_icons_android_ic_edit))
+                    binding.editIcon.isActivated = editable
                     itemTouchHelper.attachToRecyclerView(null)
                 }
             }
-
         }
 
         viewModel.getFavoriteCitiesFromDB(requireContext())
-
+        viewModel.getFavoriteCitiesDBData(requireContext())
 
         return binding.root
     }
@@ -99,16 +99,14 @@ class FavoritesFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-
-
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.adapter = favoritesAdapter
 
+        viewModel.favoriteCitiesDBAllData.observe(viewLifecycleOwner) {
 
-        viewModel.favoriteCitiesFromDB.observe(viewLifecycleOwner){
-            val adapter = FavoriteCityAdapter(requireContext(), it)
-            binding.recyclerView.adapter = adapter
+            favoritesAdapter.updateFavorites(it)
 
-            var simpleCallback = object  : ItemTouchHelper.SimpleCallback(UP.or(DOWN), START.or(END)){
+            var simpleCallback = object : ItemTouchHelper.SimpleCallback(UP.or(DOWN), START.or(END)) {
                 override fun onMove(
                     recyclerView: RecyclerView,
                     viewHolder: RecyclerView.ViewHolder,
@@ -120,10 +118,15 @@ class FavoritesFragment : Fragment() {
                     Collections.swap(it, startPosition, endPosition)
                     binding.recyclerView.adapter?.notifyItemMoved(startPosition, endPosition)
 
+                    val locationResponse = MappingHelper().mapToLocationResponseList(it)
+
                     it[startPosition].crrnPos = startPosition
                     it[endPosition].crrnPos = endPosition
-                    viewModel.insertFavoriteCity(requireContext(), it[startPosition])
-                    viewModel.insertFavoriteCity(requireContext(), it[endPosition])
+                    locationResponse[startPosition].crrnPos = startPosition
+                    locationResponse[endPosition].crrnPos = endPosition
+
+                    viewModel.insertFavoriteCity(requireContext(), locationResponse[startPosition])
+                    viewModel.insertFavoriteCity(requireContext(), locationResponse[endPosition])
 
                     return true
                 }
@@ -131,35 +134,27 @@ class FavoritesFragment : Fragment() {
                 @SuppressLint("NotifyDataSetChanged")
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                     val position = viewHolder.adapterPosition
-                    adapter.removeItem(position)
+                    favoritesAdapter.removeItem(position)
 
-                    adapter.notifyDataSetChanged()
+                    favoritesAdapter.notifyDataSetChanged()
                 }
-
             }
             val itemTouchHelper = ItemTouchHelper(simpleCallback)
 
-
             binding.editIcon.setOnClickListener {
-                if(!editable){
+                if (!editable) {
                     editable = true
-                    binding.editIcon.setImageDrawable(resources.getDrawable(R.drawable.ic_icons_android_ic_done))
+                    binding.editIcon.isActivated = editable
                     itemTouchHelper.attachToRecyclerView(binding.recyclerView)
-                }
-                else{
+                } else {
                     editable = false
-                    binding.editIcon.setImageDrawable(resources.getDrawable(R.drawable.ic_icons_android_ic_edit))
+                    binding.editIcon.isActivated = editable
                     itemTouchHelper.attachToRecyclerView(null)
                 }
             }
-
-
         }
 
         viewModel.getFavoriteCitiesFromDB(requireContext())
+        viewModel.getFavoriteCitiesDBData(requireContext())
     }
-
-
-
-
 }
